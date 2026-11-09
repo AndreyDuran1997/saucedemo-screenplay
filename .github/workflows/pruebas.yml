@@ -1,0 +1,33 @@
+name: Pruebas E2E
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v7
+
+      - name: Instalar Java 21
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Ejecutar las pruebas (Chrome oculto)
+        run: mvn -B clean verify -Dheadless.mode=true
+
+      - name: Guardar el reporte de Serenity
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: reporte-serenity
+          path: target/site/serenity

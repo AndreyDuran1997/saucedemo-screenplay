@@ -1,10 +1,12 @@
 # Automatización SauceDemo — Serenity BDD + Screenplay
 
+   [![Pruebas E2E](https://github.com/AndreyDuran1997/saucedemo-screenplay/actions/workflows/pruebas.yml/badge.svg)](https://github.com/AndreyDuran1997/saucedemo-screenplay/actions/workflows/pruebas.yml)
+
 Pruebas automatizadas de [SauceDemo](https://www.saucedemo.com) con Serenity BDD, Cucumber y el patrón Screenplay.
 
 ## Requisitos
 
-- JDK 25 (LTS)
+- JDK 21 (LTS)
 - Maven 3.9 o superior
 - Google Chrome
 
@@ -17,8 +19,8 @@ mvn clean verify
 Solo los escenarios con una etiqueta:
 
 ```bash
-mvn clean verify -Dtags="@login"
-```
+   mvn clean verify "-Dcucumber.filter.tags=@login"
+   ```
 
 ## Reporte
 
